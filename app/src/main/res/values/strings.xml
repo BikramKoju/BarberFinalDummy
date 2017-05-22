@@ -1,0 +1,67 @@
+<resources>
+    <string name="app_name">BarberFinalApp</string>
+    <string name="income">Income</string>
+    <string-array name="image_ids">
+        <item>@drawable/image_1</item>
+        <item>@drawable/image_2</item>
+        <item>@drawable/image_3</item>
+        <item>@drawable/image_4</item>
+        <item>@drawable/image_5</item>
+        <item>@drawable/image_6</item>
+        <item>@drawable/image_7</item>
+        <item>@drawable/image_8</item>
+        <item>@drawable/image_9</item>
+        <item>@drawable/image_1</item>
+        <item>@drawable/image_2</item>
+        <item>@drawable/image_3</item>
+        <item>@drawable/image_4</item>
+        <item>@drawable/image_5</item>
+        <item>@drawable/image_6</item>
+        <item>@drawable/image_7</item>
+        <item>@drawable/image_8</item>
+        <item>@drawable/image_9</item>
+    </string-array>
+
+    <string-array name="titles">
+        <item>कपाल काटेको</item>
+        <item>फेसवास गरेको</item>
+        <item>कपाल रातो गरेको</item>
+        <item>बच्चाको कपाल काटेको</item>
+        <item>फेसियल गरेको</item>
+        <item>फचे ब्लीच गरेको</item>
+        <item>दार्ही काटेको</item>
+        <item>सेम्पु गरेको</item>
+        <item>हेयर डराई गरेको</item>
+        <item>कपाल काटेको</item>
+        <item>फेसवास गरेको</item>
+        <item>कपाल रातो गरेको</item>
+        <item>बच्चाको कपाल काटेको</item>
+        <item>फेसियल गरेको</item>
+        <item>फचे ब्लीच गरेको</item>
+        <item>दार्ही काटेको</item>
+        <item>सेम्पु गरेको</item>
+        <item>हेयर डराई गरेको</item>
+    </string-array>
+
+    <string-array name="numbers">
+        <item>100</item>
+        <item>25</item>
+        <item>75</item>
+        <item>30</item>
+        <item>20</item>
+        <item>40</item>
+        <item>50</item>
+        <item>80</item>
+        <item>30</item>
+        <item>60</item>
+        <item>90</item>
+        <item>45</item>
+        <item>35</item>
+        <item>70</item>
+        <item>40</item>
+        <item>30</item>
+        <item>50</item>
+        <item>40</item>
+    </string-array>
+
+</resources>
