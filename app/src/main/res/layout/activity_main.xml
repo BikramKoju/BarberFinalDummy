@@ -7,6 +7,14 @@
     android:orientation="vertical"
     tools:context="com.example.bikramkoju.barberfinalapp.MainActivity">
 
+    <include
+        layout="@layout/toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+    </include>
+
     <com.astuetz.PagerSlidingTabStrip
         android:layout_width="368dp"
         android:layout_height="?attr/actionBarSize"

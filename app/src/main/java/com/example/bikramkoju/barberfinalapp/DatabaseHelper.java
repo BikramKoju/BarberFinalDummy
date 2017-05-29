@@ -13,8 +13,8 @@ import java.util.ArrayList;
  */
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-  //  ArrayList<InfoModule> data;
-    private static final String DATABASENAME = "newdatabase", TABLENAME = "expenditure", TABLENAME2 = "income", TABLENAME3="info";
+    ArrayList<InfoModule> data = new ArrayList<>();
+    private static final String DATABASENAME = "newdatabase", TABLENAME = "expenditure", TABLENAME2 = "income", TABLENAME3 = "info";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASENAME, null, 1);
@@ -29,14 +29,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "income INTEGER)"
         );
 
-       /* db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLENAME3 +  "(mid INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "TITLE TEXT, PRICE INTEGER)"
-        );*/
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLENAME3 + "(mid INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "TITLE TEXT, PRICE TEXT)"
+        );
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLENAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLENAME2);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLENAME3);
+
         onCreate(db);
     }
 
@@ -56,14 +59,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-   /* public void addInfo(String title, int price){
-        SQLiteDatabase db=this.getWritableDatabase();
-        ContentValues cv=new ContentValues();
-        cv.put("TITLE",title);
-        cv.put("PRICE",price);
-        db.insert(TABLENAME3,null,cv);
+    public void addInfo(InfoModule infoModule) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put("TITLE", infoModule.getUtitle());
+        cv.put("PRICE", infoModule.getTitle());
+        db.insert(TABLENAME3, null, cv);
         db.close();
-    }*/
+    }
+
+    public void updateData(InfoModule infoModule) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("TITLE", infoModule.getUtitle());
+        cv.put("PRICE", infoModule.getTitle());
+        db.update(TABLENAME3, cv, "TITLE=" + infoModule.getUtitle(), null);
+        db.update(TABLENAME3, cv, "PRICE="+infoModule.getTitle(), null);
+
+        db.close();
+    }
+
+    public void removeData(String title) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("delete from " + TABLENAME3 + " where TITLE=" + title);
+        db.close();
+    }
+
 
     public String getExpense() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -100,18 +122,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
-   /* public ArrayList<InfoModule> getInfo()
-    {
-        SQLiteDatabase db=this.getReadableDatabase();
-        Cursor cursor=db.rawQuery("SELECT * FROM " + TABLENAME3, null);
-        if (cursor.getCount()!=0){
-            if (cursor.moveToFirst()){
-                do{
-                    InfoModule im=new InfoModule();
-                    im.setTitle(cursor.getString(cursor.getColumnIndex("TITLE")));
-                    im.setPrice(cursor.getInt(cursor.getColumnIndex("PRICE")));
+    public ArrayList<InfoModule> getInfo() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLENAME3, null);
+        if (cursor.getCount() != 0) {
+            if (cursor.moveToFirst()) {
+                do {
+                    InfoModule im = new InfoModule();
+                    im.setUtitle(cursor.getString(cursor.getColumnIndex("TITLE")));
+                    im.setTitle(cursor.getString(cursor.getColumnIndex("PRICE")));
                     data.add(im);
-                }while (cursor.moveToNext());
+                } while (cursor.moveToNext());
             }
         }
         cursor.close();
@@ -119,6 +140,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return data;
 
 
-    }*/
+    }
 
 }

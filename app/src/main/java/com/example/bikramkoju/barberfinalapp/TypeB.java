@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -36,6 +37,7 @@ public class TypeB extends Fragment {
     SharedPreferences.Editor editor;
     SharedPreferences sharedPreferences;
     DatabaseHelper db;
+    Module module;
     TextView result;
     private long sum;
 
@@ -72,9 +74,23 @@ public class TypeB extends Fragment {
 
                 db=new DatabaseHelper(getActivity());
                 db.addExpense(String.valueOf(sum));
-
             }
         });
+
+        module = new Module();
+        module.setSum(sum);
+
+        gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                ImageItem litem=(ImageItem) parent.getItemAtPosition(position);
+                String title=litem.getUtitle();
+                Toast.makeText(getActivity(),"Do you want to update:"+title,Toast.LENGTH_LONG).show();
+                return true;
+            }
+        });
+
+
     }
 
     private ArrayList<ImageItem> getData() {
